@@ -1,7 +1,7 @@
 <template>
 <div class="dog">
-    <button v-on:click="created()">GET_DOG</button> 
-    <div click=created>
+    <button v-on:click="getDog()">GET_DOG</button> 
+    <div>
         {{value}}
     </div>
     <img :src=value.message >
@@ -13,6 +13,8 @@
 
 import axios from 'axios'
 
+
+
 export default {
   name: 'DogApi',
     data () {
@@ -20,16 +22,16 @@ export default {
       value: ''
     }
   },
-
    methods: {
-    created: function () {
+    getDog: function () {
     axios.get('https://dog.ceo/api/breeds/image/random ')
       .then(response => {
        this.value=response.data;
       })
-  }
+  },
 }   
 }
+
 </script>
 
 <style scoped>
