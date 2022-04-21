@@ -1,11 +1,27 @@
 <template>
+  <PageHeader />
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/test">test</router-link>
   </nav>
   <router-view />
+  <PageFooter />
 </template>
+
+<script>
+import 'normalize.css'
+import PageHeader from './components/templates/PageHeader.vue'
+import PageFooter from './components/templates/PageFooter.vue'
+
+export default {
+  name: 'App',
+  components: {
+    PageHeader,
+    PageFooter,
+  },
+}
+</script>
 
 <style>
 #app {
