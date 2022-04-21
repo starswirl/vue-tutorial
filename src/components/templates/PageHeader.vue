@@ -1,7 +1,20 @@
 <template>
-  <div class="headerRoot">
-    <p>header</p>
-  </div>
+  <v-app-bar color="secondary" prominent>
+    <v-app-bar-nav-icon
+      variant="text"
+      @click.stop="drawer = !drawer"
+    ></v-app-bar-nav-icon>
+
+    <v-toolbar-title>My Apps</v-toolbar-title>
+  </v-app-bar>
+
+  <v-navigation-drawer v-model="drawer" bottom temporary>
+    <nav>
+      <div v-for="(value, key) in items" :key="key">
+        <router-link :to="value.path">{{ value.title }}</router-link>
+      </div>
+    </nav>
+  </v-navigation-drawer>
 </template>
 
 <script>
@@ -9,16 +22,24 @@ export default {
   name: 'PageHeader',
   data() {
     return {
-      value: '',
+      drawer: false,
+      items: [
+        {
+          title: 'Home',
+          path: '/',
+        },
+        {
+          title: 'About',
+          path: '/about',
+        },
+        {
+          title: 'test',
+          path: '/test',
+        },
+      ],
     }
   },
 }
 </script>
 
-<style scoped>
-.headerRoot {
-  width: 100%;
-  height: 50px;
-  background-color: darkgray;
-}
-</style>
+<style scoped></style>

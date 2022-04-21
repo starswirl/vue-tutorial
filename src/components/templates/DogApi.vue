@@ -13,6 +13,7 @@
       <br />
       <div v-if="mode === 'breed'">
         犬種を選択してください
+        <v-select :items="breeds" v-model="targetBreeds"> </v-select>
         <select v-model="targetBreeds">
           <option disabled value="">犬種を選択してください</option>
           <option
@@ -26,9 +27,14 @@
         <div>targetBreeds: {{ targetBreeds }}</div>
       </div>
       <div>
-        <button v-on:click="getDog()" v-bind:disabled="isProcessing">
+        <v-btn
+          flat
+          color="secondary"
+          v-on:click="getDog()"
+          v-bind:disabled="isProcessing"
+        >
           GET_DOG
-        </button>
+        </v-btn>
       </div>
 
       <div v-if="mode !== 'breed'">
@@ -40,7 +46,7 @@
       <img class="docPic" :src="result.message" />
     </div>
 
-    <div><img class="img" src="@/assets/img/yukuefumei_pet_dog.png" /></div>
+    <div><img class="img" src="/img/yukuefumei_pet_dog.png" /></div>
   </div>
 </template>
 
@@ -120,6 +126,7 @@ export default {
   height: 800px;
 }
 .docPic {
+  padding: 5px;
   width: 250px;
 }
 </style>
