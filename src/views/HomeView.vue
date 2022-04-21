@@ -1,17 +1,10 @@
 <template>
-  <div class="home">
-    <DogApi />
-  </div>
+  <div class="home">This is Home</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import DogApi from '@/components/templates/DogApi.vue'
-
 export default {
   name: 'HomeView',
-  components: {
-    DogApi,
-  },
+  components: {},
 }
 </script>

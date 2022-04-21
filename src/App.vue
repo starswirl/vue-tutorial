@@ -4,7 +4,7 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/test">test</router-link>
   </nav>
-  <router-view />./views/TestPage.vue
+  <router-view />
 </template>
 
 <style>
