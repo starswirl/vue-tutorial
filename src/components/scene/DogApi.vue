@@ -1,43 +1,46 @@
 <template>
   <div class="dog">
-    検索モードをを選択してください
-    <br />
-    <input type="radio" id="one" value="random" v-model="mode" />
-    <label for="one">ランダム</label>
-    <br />
-    <input type="radio" id="two" value="breed" v-model="mode" />
-    <label for="two">犬種選択</label>
-    <br />
-    mode: {{ mode }}
-    <br />
-    <div v-if="mode === 'breed'">
-      犬種を選択してください
-      <select v-model="targetBreeds">
-        <option disabled value="">犬種を選択してください</option>
-        <option
-          v-for="option in breeds"
-          v-bind:value="option"
-          v-bind:key="option"
-        >
-          {{ option }}
-        </option>
-      </select>
-      <div>targetBreeds: {{ targetBreeds }}</div>
-    </div>
     <div>
-      <button v-on:click="getDog()" v-bind:disabled="isProcessing">
-        GET_DOG
-      </button>
-    </div>
-
-    <div v-if="mode !== 'breed'">
-      <div>
-        犬種:
-        {{ !!result.message ? result.message.split('/')[4] : result.message }}
+      検索モードをを選択してください
+      <br />
+      <input type="radio" id="one" value="random" v-model="mode" />
+      <label for="one">ランダム</label>
+      <br />
+      <input type="radio" id="two" value="breed" v-model="mode" />
+      <label for="two">犬種選択</label>
+      <br />
+      mode: {{ mode }}
+      <br />
+      <div v-if="mode === 'breed'">
+        犬種を選択してください
+        <select v-model="targetBreeds">
+          <option disabled value="">犬種を選択してください</option>
+          <option
+            v-for="option in breeds"
+            v-bind:value="option"
+            v-bind:key="option"
+          >
+            {{ option }}
+          </option>
+        </select>
+        <div>targetBreeds: {{ targetBreeds }}</div>
       </div>
+      <div>
+        <button v-on:click="getDog()" v-bind:disabled="isProcessing">
+          GET_DOG
+        </button>
+      </div>
+
+      <div v-if="mode !== 'breed'">
+        <div>
+          犬種:
+          {{ !!result.message ? result.message.split('/')[4] : result.message }}
+        </div>
+      </div>
+      <img class="docPic" :src="result.message" />
     </div>
 
-    <img class="docPic" :src="result.message" />
+    <div><img class="img" src="@/assets/img/yukuefumei_pet_dog.png" /></div>
   </div>
 </template>
 
@@ -74,6 +77,10 @@ export default {
 
       this.breeds = resultBreeds
     })
+
+    axios.get(this.url.random).then((response) => {
+      this.result = response.data
+    })
   },
   methods: {
     getDog: function () {
@@ -104,10 +111,12 @@ export default {
 </script>
 
 <style scoped>
+.img {
+  width: 250px;
+}
 .dog {
+  display: flex;
   padding: 5px;
-  background-color: aqua;
-  width: 100%;
   height: 100%;
 }
 .docPic {

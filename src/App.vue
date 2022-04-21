@@ -1,5 +1,5 @@
 <template>
-  <TestCase/>
+  <TestCase />
 </template>
 
 <script>
@@ -8,8 +8,8 @@ import TestCase from './components/TestCase.vue'
 export default {
   name: 'App',
   components: {
-    TestCase
-  }
+    TestCase,
+  },
 }
 </script>
 
