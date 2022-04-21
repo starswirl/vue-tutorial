@@ -117,7 +117,7 @@ export default {
 .dog {
   display: flex;
   padding: 5px;
-  height: 100%;
+  height: 800px;
 }
 .docPic {
   width: 250px;
