@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import TitleLabel from '../atoms/TitleLabel.vue'
-import InputForm from '../atoms/InputForm.vue'
-import DogApi from '../templates/DogApi.vue'
+import TitleLabel from '../components/atoms/TitleLabel.vue'
+import InputForm from '../components/atoms/InputForm.vue'
+import DogApi from '../components/templates/DogApi.vue'
 
 export default {
   name: 'TestPage',
