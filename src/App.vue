@@ -1,12 +1,16 @@
 <template>
-  <PageHeader />
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/test">test</router-link>
-  </nav>
-  <router-view />
-  <PageFooter />
+  <v-app>
+    <v-main>
+      <PageHeader />
+      <nav>
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link> |
+        <router-link to="/test">test</router-link>
+      </nav>
+      <router-view />
+      <PageFooter />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -20,9 +24,11 @@ export default {
     PageHeader,
     PageFooter,
   },
+  data: () => ({
+    //
+  }),
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
