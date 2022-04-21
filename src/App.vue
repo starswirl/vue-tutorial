@@ -1,14 +1,14 @@
 <template>
-  <TestCase />
+  <TestPage />
 </template>
 
 <script>
-import TestCase from './components/TestCase.vue'
+import TestPage from './components/pages/TestPage.vue'
 
 export default {
   name: 'App',
   components: {
-    TestCase,
+    TestPage,
   },
 }
 </script>

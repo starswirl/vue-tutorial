@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import TitleLabel from './atoms/TitleLabel.vue'
-import InputForm from './atoms/InputForm.vue'
-import DogApi from './scene/DogApi.vue'
+import TitleLabel from '../atoms/TitleLabel.vue'
+import InputForm from '../atoms/InputForm.vue'
+import DogApi from '../templates/DogApi.vue'
 
 export default {
-  name: 'TestCase',
+  name: 'TestPage',
   components: {
     TitleLabel,
     InputForm,

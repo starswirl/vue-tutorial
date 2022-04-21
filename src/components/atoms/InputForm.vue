@@ -1,23 +1,23 @@
 <template>
   <div class="displayBox">
-    <input class="input" v-model="value">
-    <p >{{ value }}</p>
+    <input class="input" v-model="value" />
+    <p>{{ value }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'InputForm',
-  data () {
+  data() {
     return {
-      value: ''
+      value: '',
     }
-  }
+  },
 }
 </script>
 
 <style scoped>
-  .displayBox {
-    display: flex;
-  }
+.displayBox {
+  display: flex;
+}
 </style>
