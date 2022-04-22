@@ -1,30 +1,22 @@
 <template>
+  <TitleLabel name="わんちゃんAPI" />
   <div class="dog">
     <div>
-      検索モードをを選択してください
-      <br />
-      <input type="radio" id="one" value="random" v-model="mode" />
-      <label for="one">ランダム</label>
-      <br />
-      <input type="radio" id="two" value="breed" v-model="mode" />
-      <label for="two">犬種選択</label>
-      <br />
-      mode: {{ mode }}
-      <br />
-      <div v-if="mode === 'breed'">
-        犬種を選択してください
-        <v-select :items="breeds" v-model="targetBreeds"> </v-select>
-        <select v-model="targetBreeds">
-          <option disabled value="">犬種を選択してください</option>
-          <option
-            v-for="option in breeds"
-            v-bind:value="option"
-            v-bind:key="option"
-          >
-            {{ option }}
-          </option>
-        </select>
-        <div>targetBreeds: {{ targetBreeds }}</div>
+      <v-radio-group v-model="state.mode">
+        <v-radio
+          color="primary"
+          v-for="(item, key) in constant.modeList"
+          :key="key"
+          :label="item.name"
+          :value="item.id"
+        ></v-radio>
+      </v-radio-group>
+      <TitleLabel :name="'mode:' + state.mode" />
+      <div v-if="state.mode === 'breed'">
+        <TitleLabel name="犬種を選択してください" />
+        <v-select :items="store.breedList" v-model="state.targetBreeds">
+        </v-select>
+        <TitleLabel :name="'選択犬種: ' + state.targetBreeds" />
       </div>
       <div>
         <v-btn
@@ -36,14 +28,14 @@
           GET_DOG
         </v-btn>
       </div>
-
-      <div v-if="mode !== 'breed'">
-        <div>
-          犬種:
-          {{ !!result.message ? result.message.split('/')[4] : result.message }}
-        </div>
+      <div v-if="state.mode !== 'breed'">
+        <TitleLabel
+          :name="
+            '犬種: ' + (!!store.dogImage ? store.dogImage.split('/')[4] : '')
+          "
+        />
       </div>
-      <img class="docPic" :src="result.message" />
+      <img class="docPic" :src="store.dogImage" />
     </div>
 
     <div><img class="img" src="/img/yukuefumei_pet_dog.png" /></div>
@@ -51,63 +43,82 @@
 </template>
 
 <script>
+import { URL } from '../../constants/api.js'
+import TitleLabel from '../atoms/TitleLabel.vue'
 import axios from 'axios'
+
 export default {
   name: 'DogApi',
+  components: { TitleLabel },
   data() {
     return {
-      result: '',
-      mode: '',
-      breeds: [],
-      targetBreeds: '',
+      store: {
+        breedList: [],
+        dogImage: '',
+      },
+      state: {
+        mode: '',
+        targetBreeds: '',
+      },
       url: {
-        random: 'https://dog.ceo/api/breeds/image/random',
+        random: URL.DOG_API.RANDOM,
         breed: {
-          first: 'https://dog.ceo/api/breed/',
-          second: '/images/random',
+          first: URL.DOG_API.BREED.FIRST,
+          second: URL.DOG_API.BREED.SECOND,
         },
-        allBreed: 'https://dog.ceo/api/breeds/list/all',
+        allBreed: URL.DOG_API.ALL_BREED,
+      },
+      constant: {
+        modeList: [
+          {
+            id: 'random',
+            name: 'ランダム',
+          },
+          {
+            id: 'breed',
+            name: '犬種選択',
+          },
+        ],
       },
     }
   },
   created: function () {
     axios.get(this.url.allBreed).then((response) => {
       const listAllBreeds = Object.entries(response.data.message)
-
       const resultBreeds = listAllBreeds.flatMap((breed) => {
         // 犬種がネストしていない場合はそのまま返す
         if (breed[1].length < 1) return breed[0]
         // それ以外は犬種をすべて生成する
         return breed[1].map((breedDetail) => `${breed[0]}/${breedDetail}`)
       })
-
-      this.breeds = resultBreeds
+      this.store.breedList = resultBreeds
     })
-
     axios.get(this.url.random).then((response) => {
-      this.result = response.data
+      this.store.dogImage = response.data.message
     })
   },
   methods: {
     getDog: function () {
       // https://dog.ceo/dog-api/
       const targetURL =
-        this.mode === 'breed'
-          ? this.url.breed.first + this.targetBreeds + this.url.breed.second
+        this.state.mode === 'breed'
+          ? this.url.breed.first +
+            this.state.targetBreeds +
+            this.url.breed.second
           : this.url.random
       axios.get(targetURL).then((response) => {
-        this.result = response.data
+        this.store.dogImage = response.data.message
       })
     },
   },
   computed: {
     isProcessing: function () {
       // ラジオボタンが選択されていない
-      if (this.mode === '') {
+      if (this.state.mode === '') {
         return true
       }
       // 犬種選択かつ犬種が選択されていない
-      if (this.mode === 'breed' && this.targetBreeds === '') {
+      if (this.state.mode === 'breed' && this.state.targetBreeds === '') {
         return true
       }
       return false

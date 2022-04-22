@@ -3,6 +3,7 @@
     <div class="box">
       <div class="backgroundColor">
         <InputForm />
+        <DogApi />
       </div>
     </div>
   </div>
@@ -10,11 +11,13 @@
 
 <script>
 import InputForm from '../components/atoms/InputForm.vue'
+import DogApi from '../components/templates/DogApi.vue'
 
 export default {
   name: 'TestPage',
   components: {
     InputForm,
+    DogApi,
   },
 }
 </script>
