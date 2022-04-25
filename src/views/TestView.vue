@@ -2,7 +2,7 @@
   <div class="testCaseRoot">
     <div class="box">
       <div class="backgroundColor">
-        <TitleLabel name="わんちゃんAPI" />
+        <TitleLabel name="TEST" />
         <InputForm />
         aaa
         <v-btn flat color="secondary" v-on:click="increment">
@@ -12,7 +12,6 @@
       </div>
     </div>
   </div>
-  <div></div>
 </template>
 
 <script>
@@ -27,14 +26,17 @@ export default {
   },
   computed: {
     step() {
+      // @ts-ignore
       return this.$store.getters.step
     },
     count() {
+      // @ts-ignore
       return this.$store.getters.count
     },
   },
   methods: {
     increment() {
+      // @ts-ignore
       this.$store.dispatch('increment')
     },
   },

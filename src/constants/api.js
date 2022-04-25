@@ -1,4 +1,4 @@
-export const URL = {
+export const API_URL = {
   DOG_API: {
     RANDOM: 'https://dog.ceo/api/breeds/image/random',
     BREED: {

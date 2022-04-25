@@ -14,8 +14,7 @@
       <TitleLabel :name="'mode:' + state.mode" />
       <div v-if="state.mode === 'breed'">
         <TitleLabel name="犬種を選択してください" />
-        <v-select :items="store.breedList" v-model="state.targetBreeds">
-        </v-select>
+        <v-select :items="breedList" v-model="state.targetBreeds"> </v-select>
         <TitleLabel :name="'選択犬種: ' + state.targetBreeds" />
       </div>
       <div>
@@ -30,12 +29,10 @@
       </div>
       <div v-if="state.mode !== 'breed'">
         <TitleLabel
-          :name="
-            '犬種: ' + (!!store.dogImage ? store.dogImage.split('/')[4] : '')
-          "
+          :name="'犬種: ' + (dogImage !== '' ? dogImage.split('/')[4] : '')"
         />
       </div>
-      <img class="docPic" :src="store.dogImage" />
+      <img class="docPic" :src="dogImage" />
     </div>
 
     <div><img class="img" src="/img/yukuefumei_pet_dog.png" /></div>
@@ -43,30 +40,16 @@
 </template>
 
 <script>
-import { URL } from '../../constants/api.js'
 import TitleLabel from '../atoms/TitleLabel.vue'
-import axios from 'axios'
 
 export default {
   name: 'DogApi',
   components: { TitleLabel },
   data() {
     return {
-      store: {
-        breedList: [],
-        dogImage: '',
-      },
       state: {
         mode: '',
         targetBreeds: '',
-      },
-      url: {
-        random: URL.DOG_API.RANDOM,
-        breed: {
-          first: URL.DOG_API.BREED.FIRST,
-          second: URL.DOG_API.BREED.SECOND,
-        },
-        allBreed: URL.DOG_API.ALL_BREED,
       },
       constant: {
         modeList: [
@@ -83,35 +66,30 @@ export default {
     }
   },
   created: function () {
-    axios.get(this.url.allBreed).then((response) => {
-      const listAllBreeds = Object.entries(response.data.message)
-      const resultBreeds = listAllBreeds.flatMap((breed) => {
-        // 犬種がネストしていない場合はそのまま返す
-        if (breed[1].length < 1) return breed[0]
-        // それ以外は犬種をすべて生成する
-        return breed[1].map((breedDetail) => `${breed[0]}/${breedDetail}`)
-      })
-      this.store.breedList = resultBreeds
-    })
-    axios.get(this.url.random).then((response) => {
-      this.store.dogImage = response.data.message
-    })
+    // @ts-ignore
+    this.$store.dispatch('getBreedList')
+    // @ts-ignore
+    this.$store.dispatch('getRundomDog')
   },
   methods: {
     getDog: function () {
       // https://dog.ceo/dog-api/
-      const targetURL =
-        this.state.mode === 'breed'
-          ? this.url.breed.first +
-            this.state.targetBreeds +
-            this.url.breed.second
-          : this.url.random
-      axios.get(targetURL).then((response) => {
-        this.store.dogImage = response.data.message
-      })
+      this.state.mode === 'breed'
+        ? // @ts-ignore
+          this.$store.dispatch('getRundomBreedDog', this.state.targetBreeds)
+        : // @ts-ignore
+          this.$store.dispatch('getRundomDog')
     },
   },
   computed: {
+    breedList() {
+      // @ts-ignore
+      return this.$store.getters.breedList
+    },
+    dogImage() {
+      // @ts-ignore
+      return this.$store.getters.dogImage
+    },
     isProcessing: function () {
       // ラジオボタンが選択されていない
       if (this.state.mode === '') {
