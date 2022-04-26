@@ -2,7 +2,9 @@
   <v-app>
     <v-main>
       <PageHeader />
-      <router-view />
+      <div class="wrapper">
+        <router-view />
+      </div>
       <PageFooter />
     </v-main>
   </v-app>
@@ -25,6 +27,11 @@ export default {
 }
 </script>
 <style>
+.wrapper {
+  min-height: 100vh;
+  position: relative; /*←相対位置*/
+  box-sizing: border-box; /*←全て含めてmin-height:100vhに*/
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       state: {
-        mode: '',
+        mode: 'random',
         targetBreeds: '',
       },
       constant: {
@@ -112,7 +112,6 @@ export default {
 .dog {
   display: flex;
   padding: 5px;
-  height: 800px;
 }
 .docPic {
   padding: 5px;
