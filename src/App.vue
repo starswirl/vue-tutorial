@@ -28,6 +28,7 @@ export default {
 </script>
 <style>
 .wrapper {
+  padding-top: 0px;
   min-height: 100vh;
   position: relative; /*←相対位置*/
   box-sizing: border-box; /*←全て含めてmin-height:100vhに*/

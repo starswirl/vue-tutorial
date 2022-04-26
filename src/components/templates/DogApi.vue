@@ -1,7 +1,7 @@
 <template>
   <TitleLabel name="わんちゃんAPI" />
   <div class="dog">
-    <div>
+    <div class="flexBox">
       <v-radio-group v-model="state.mode">
         <v-radio
           color="primary"
@@ -109,12 +109,16 @@ export default {
 .img {
   width: 250px;
 }
+.flexBox {
+  width: 100%;
+  justify-content: space-between;
+}
 .dog {
   display: flex;
   padding: 5px;
 }
 .docPic {
   padding: 5px;
-  width: 250px;
+  max-height: 250px;
 }
 </style>

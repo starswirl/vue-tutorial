@@ -1,4 +1,4 @@
-import { API_URL } from '@/constants/api'
+import { API_URL } from '@/constants/apiURL'
 import axios from 'axios'
 
 export const fetchBreedListAPI = async () => {
