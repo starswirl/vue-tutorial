@@ -19,6 +19,7 @@ vue の練習環境
 
 ## 構成
 
+```
 root
 ├ src
 │ ├ api:
@@ -31,6 +32,7 @@ root
 │ └ lib/
 ├ .devcontainer: 開発環境
 └ public
+```
 
 ## 起動方法
 
