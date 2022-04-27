@@ -23,6 +23,10 @@ vue の練習環境
 
 `.env.sample`を参考に`.env`を作成する
 
+### Docker 環境
+
+`reopen in container`
+
 ### 共通
 
 `yarn`
