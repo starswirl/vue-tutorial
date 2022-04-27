@@ -26,6 +26,11 @@ export const routes = [
     name: 'dog-api',
     component: () => import('../views/DogApiView.vue'),
   },
+  {
+    path: '/google-map',
+    name: 'google-map',
+    component: () => import('../views/GoogleMapView.vue'),
+  },
 ]
 
 const router = createRouter({
