@@ -21,6 +21,7 @@ vue の練習環境
 
 ```
 root
+├ .devcontainer: 開発環境
 ├ src
 │ ├ api:
 │ ├ assets
@@ -28,9 +29,7 @@ root
 │ ├ constants:
 │ ├ plugins:
 │ ├ router: ルーティング情報
-│ ├ views: ページ
-│ └ lib/
-├ .devcontainer: 開発環境
+│ └ views: ページ
 └ public
 ```
 
