@@ -15,6 +15,7 @@ vue の練習環境
 - vuetify
 - vuex
 - axios
+- Google Maps JavaScript API Loader
 
 ## 起動方法
 
