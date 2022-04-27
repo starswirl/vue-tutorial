@@ -17,6 +17,21 @@ vue の練習環境
 - axios
 - Google Maps JavaScript API Loader
 
+## 構成
+
+root
+├ src
+│ ├ api:
+│ ├ assets
+│ ├ components:
+│ ├ constants:
+│ ├ plugins:
+│ ├ router: ルーティング情報
+│ ├ views: ページ
+│ └ lib/
+├ .devcontainer: 開発環境
+└ public
+
 ## 起動方法
 
 ### GoogleMap を利用する場合
