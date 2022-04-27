@@ -1,24 +1,29 @@
 # vue-tutorial
 
-## Project setup
-```
-yarn install
-```
+## 概要
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+vue の練習環境
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### 入っている機能
 
-### Lints and fixes files
-```
-yarn lint
-```
+- DogAPI
+- GoogleMap
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 使用技術
+
+- vue-router
+- vuetify
+- vuex
+- axios
+
+## 起動方法
+
+### GoogleMap を利用する場合
+
+`.env.sample`を参考に`.env`を作成する
+
+### 共通
+
+`yarn`
+
+`yarn serve`
