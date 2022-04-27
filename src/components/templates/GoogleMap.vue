@@ -21,8 +21,10 @@ export default {
     }
   },
   async mounted() {
+    console.log('process.env.VUE_APP_GOOGLE_API')
+    console.log(process.env)
     this.loader = new Loader({
-      apiKey: '',
+      apiKey: process.env.VUE_APP_GOOGLE_API,
       version: 'weekly',
       libraries: ['places'],
     })
